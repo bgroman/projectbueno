@@ -6,9 +6,19 @@
 package Game.Shared;
 
 public enum Suit {
-    Red,
-    Green,
-    Yellow,
-    Blue,
-    Wild
+    Red(0),
+    Green(1),
+    Yellow(2),
+    Blue(3),
+    Wild(4);
+
+    private final byte byteCode;
+
+    private Suit(int byteCode){
+        this.byteCode = (byte)byteCode;
+    }
+
+    public byte getByte(){
+        return byteCode;
+    }
 }
