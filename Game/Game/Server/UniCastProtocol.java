@@ -17,7 +17,7 @@ import Game.Shared.Constants;
  */
 public class UniCastProtocol {
 
-    private static Constants C;
+    private static Constants C = new Constants();
     private static DatagramSocket socket;
     private static DatagramPacket receiver;
     private static DatagramPacket sender;
