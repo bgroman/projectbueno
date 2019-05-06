@@ -2,11 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="48edd4ed-f7c6-4f78-aa9f-f3bcc103de70" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Game/Client/MultiCastProtocol.java" beforeDir="false" afterPath="$PROJECT_DIR$/Game/Client/MultiCastProtocol.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Game/Client/UniCastProtocol.java" beforeDir="false" afterPath="$PROJECT_DIR$/Game/Client/UniCastProtocol.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Game/Server/MultiCastProtocol.java" beforeDir="false" afterPath="$PROJECT_DIR$/Game/Server/MultiCastProtocol.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Game/Server/UniCastProtocol.java" beforeDir="false" afterPath="$PROJECT_DIR$/Game/Server/UniCastProtocol.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -36,8 +32,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Game/Server/MultiCastProtocol.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="221">
-              <caret line="17" column="34" selection-start-line="17" selection-start-column="34" selection-end-line="17" selection-end-column="34" />
+            <state relative-caret-position="136">
+              <caret line="12" column="19" lean-forward="true" selection-start-line="12" selection-start-column="19" selection-end-line="12" selection-end-column="19" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -140,7 +136,7 @@
     <frame x="953" y="0" width="974" height="1047" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2549234" />
+      <window_info content_ui="combo" id="Project" order="0" weight="0.2549234" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -204,8 +200,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Game/Server/MultiCastProtocol.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="17" column="34" selection-start-line="17" selection-start-column="34" selection-end-line="17" selection-end-column="34" />
+        <state relative-caret-position="136">
+          <caret line="12" column="19" lean-forward="true" selection-start-line="12" selection-start-column="19" selection-end-line="12" selection-end-column="19" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
