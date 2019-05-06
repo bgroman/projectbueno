@@ -5,17 +5,17 @@
  */
 package Game.Server;
 
+import java.net.DatagramSocket;
+import java.net.InetAddress;
+import java.net.UnknownHostException;
+
 /**
  *
  * @author alawren3
  */
 public class MultiCastProtocol {
+    private static final String SERVER_IP_GROUP = "356.25.0.0";
+    private DatagramSocket socket;
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) {
-        // TODO code application logic here
-    }
-    
+
 }
