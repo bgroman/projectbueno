@@ -3,19 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Game.Client;
+package Game.Shared;
 
 /**
  *
  * @author alawren3
  */
-public class ClientListener {
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) {
-        // TODO code application logic here
-    }
-    
+public class Constants {
+    public final int PORT = 2696;
+    public final int MAXDATASIZE = 1000;
+    public final String server = "pi.cs.oswego.edu";
 }
