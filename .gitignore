@@ -23,4 +23,6 @@
 hs_err_pid*
 
 
-#add custom files we dont want below
+#intellij stuff to ignore
+*.iml
+.idea/
