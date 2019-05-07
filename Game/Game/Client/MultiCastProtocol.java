@@ -3,12 +3,19 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Game.Shared;
+package Game.Client;
 
 /**
  *
  * @author alawren3
  */
-public class Constants {
+public class MultiCastProtocol {
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String[] args) {
+        // TODO code application logic here
+    }
     
 }

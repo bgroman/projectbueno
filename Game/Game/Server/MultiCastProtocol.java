@@ -3,13 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Game.Client;
+package Game.Server;
 
 /**
  *
  * @author alawren3
  */
-public class ClientSender {
+public class MultiCastProtocol {
 
     /**
      * @param args the command line arguments
