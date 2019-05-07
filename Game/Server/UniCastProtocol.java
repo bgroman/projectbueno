@@ -17,15 +17,13 @@ import Game.Shared.Constants;
  */
 public class UniCastProtocol {
 
-    private static Constants C = new Constants();
     private static DatagramSocket socket;
     private static DatagramPacket receiver;
     private static DatagramPacket sender;
 
-    UniCastProtocol(){
+    UniCastProtocol(int port){
         try {
-            socket = new DatagramSocket(C.PORT);
-            receiver = new DatagramPacket(new byte[C.MAXDATASIZE],C.MAXDATASIZE);
+            socket = new DatagramSocket(port);
         } catch (SocketException e) {
             e.printStackTrace();
         }
@@ -51,8 +49,9 @@ public class UniCastProtocol {
         }
     }
 
-    public byte[] receive(String address){
+    public byte[] receive(int size){
         try {
+            receiver = new DatagramPacket(new byte[size],size);
             socket.receive(receiver);
             byte[] data = new byte[receiver.getLength()];
             ByteBuffer bb = ByteBuffer.wrap(receiver.getData());
@@ -69,7 +68,7 @@ public class UniCastProtocol {
         return receiver.getPort();
     }
 
-    public InetAddress getAddress(){
-        return receiver.getAddress();
+    public String getAddress(){
+        return receiver.getAddress().getHostName();
     }
 }

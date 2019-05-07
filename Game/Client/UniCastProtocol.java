@@ -9,14 +9,13 @@ import java.io.IOException;
 import java.io.InterruptedIOException;
 import java.net.*;
 import java.nio.ByteBuffer;
-import Game.Shared.Constants;
 
 /**
  *
  * @author alawren3
  */
 public class UniCastProtocol {
-    private static Constants C = new Constants();
+
     private static DatagramSocket socket;
     private static DatagramPacket receiver;
     private static DatagramPacket sender;
@@ -25,18 +24,16 @@ public class UniCastProtocol {
         try {
             socket = new DatagramSocket();
             socket.setSoTimeout(timeOutInMill);
-            sender = new DatagramPacket(new byte[C.MAXDATASIZE],C.MAXDATASIZE, InetAddress.getByName(address),port);
-            receiver = new DatagramPacket(new byte[C.MAXDATASIZE],C.MAXDATASIZE);
         } catch (SocketException e) {
-            e.printStackTrace();
-        } catch (UnknownHostException e) {
             e.printStackTrace();
         }
     }
 
-    public void send(byte[] data){
-        sender.setData(data);sender.setPort(data.length);
+    public void send(byte[] data,String address, int port){
+
         try {
+            sender = new DatagramPacket(data,data.length,InetAddress.getByName(address),port);
+            sender.setData(data);sender.setPort(data.length);
             socket.send(sender);
         } catch (IOException e) {
             e.printStackTrace();
@@ -46,10 +43,11 @@ public class UniCastProtocol {
     using InterruptedIOException to signify that you didnt get the packet you wanted
     in the amount of time you expected.
      */
-    public byte[] recieve(int attempts) throws InterruptedIOException {
+    public byte[] recieve(int attempts,int dataSize) throws InterruptedIOException {
         int count = 0;
 
         try {
+            receiver = new DatagramPacket(new byte[dataSize],dataSize);
             socket.receive(receiver);
             byte[] data = new byte[receiver.getLength()];
             ByteBuffer bb = ByteBuffer.wrap(receiver.getData());
