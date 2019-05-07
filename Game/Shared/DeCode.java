@@ -6,7 +6,6 @@
 package Game.Shared;
 
 import java.nio.ByteBuffer;
-
 /**
  *
  * @author alawren3
