@@ -1,36 +1,60 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package Game.Shared;
+package Shared;
 
-import java.util.LinkedList;
+import java.util.ArrayList;
 
-/**
- *
- * @author alawren3
- */
 public class Player {
-    LinkedList<Card> hand;
-    String name;
+    private ArrayList<Card> hand;
+    private Card lastDrewCard;
+    private String name;
 
-    public Player(String name){
-        hand = new LinkedList<>();
+    public Player(String name) {
+        hand = new ArrayList<>();
         this.name = name;
     }
 
-    public boolean playCard(Card playCard){
+    public boolean playCard(Card playCard) {
         //returns true and removes card from hand if card is in hand, else returns false
         return hand.remove(playCard);
     }
 
-    public void drawCard(Card drawCard){
-        hand.addFirst(drawCard);
+    public Card getCard(int index) {
+        return hand.get(index);
     }
 
-    public void printCards(){
-        for(Card c : hand)
-            System.out.println(c.toString());
-}
+    public void drawCard(Card drawCard) {
+        hand.add(drawCard);
+        lastDrewCard = drawCard;
+    }
+
+    public Card getLastDrewCard() {
+        return lastDrewCard;
+    }
+
+    public void printCards() {
+        int count = 0;
+        for (Card c : hand) {
+            System.out.println(count + ") " + c.toString());
+            count++;
+        }
+    }
+
+    public int getHandLength() {
+        return hand.size();
+    }
+
+    public ArrayList getHand(){
+        return hand;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public boolean handContainsCard(Card card){
+        return hand.contains(card);
+    }
+
+    public void updateHand(ArrayList<Card> hand){
+        this.hand = hand;
+    }
 }
