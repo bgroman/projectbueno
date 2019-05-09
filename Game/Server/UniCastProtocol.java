@@ -20,6 +20,7 @@ public class UniCastProtocol {
     private static DatagramSocket socket;
     private static DatagramPacket receiver;
     private static DatagramPacket sender;
+    private InetAddress lastReceivedAddress;
 
     UniCastProtocol(int port){
         try {
@@ -56,6 +57,7 @@ public class UniCastProtocol {
             byte[] data = new byte[receiver.getLength()];
             ByteBuffer bb = ByteBuffer.wrap(receiver.getData());
             bb.get(data);
+            lastReceivedAddress = receiver.getAddress();
             return data;
         } catch (IOException e) {
             e.printStackTrace();
@@ -70,5 +72,9 @@ public class UniCastProtocol {
 
     public String getAddress(){
         return receiver.getAddress().getHostName();
+    }
+
+    public InetAddress getLastReceivedAddress(){
+        return lastReceivedAddress;
     }
 }
