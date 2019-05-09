@@ -5,6 +5,7 @@
  */
 package Game.Shared;
 
+import java.io.*;
 import java.nio.ByteBuffer;
 /**
  *
@@ -14,7 +15,8 @@ public class DeCode {
 
     public int opcode;
     public String ip;
-    public byte[] cardData;
+    public Card card;
+    private byte[] cardData;
 
     public DeCode(byte[] unParsedData){
         ByteBuffer bb = ByteBuffer.wrap(unParsedData);
@@ -27,6 +29,16 @@ public class DeCode {
             cardData = new byte[unParsedData.length-4];
             if(cardData.length>0){
                 bb.get(cardData);
+            }
+            try{
+                ObjectInputStream in = new ObjectInputStream(new ByteArrayInputStream(cardData));
+                card = (Card)in.readObject();
+            }
+            catch (IOException exp){
+                exp.printStackTrace();
+            }
+            catch (ClassNotFoundException exp){
+                exp.printStackTrace();
             }
         }
     }
