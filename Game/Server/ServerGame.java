@@ -1,6 +1,6 @@
-package Server;
+package Game.Server;
 
-import Shared.*;
+import Game.Shared.*;
 
 public class ServerGame {
     private Deck deck;
@@ -10,6 +10,7 @@ public class ServerGame {
     private boolean skip = false;
     private Player currPlayer;
     private CyclicLinkedList<Player> players;
+    private boolean gameRunning = true;
 
     public ServerGame(CyclicLinkedList<Player> players, int multiple) {
         this.players = players;
@@ -68,31 +69,33 @@ public class ServerGame {
     }
 
     //if player move card is null, then draw card
-    public GameReply playCard(PlayerMove playerMove) {
+    public boolean playCard(PlayerMove playerMove) {
         if (currPlayer.handContainsCard(playerMove.card)) {
-            if (playerMove.card == null) {
-                //case for draw card
-                Card temp = deck.drawCard();
-                currPlayer.drawCard(temp);
-                return new GameReply(true, temp);
-            } else if (ServerGame.checkMove(deck.getTopCard(), playerMove.card)) {
+             if (Card.checkMove(deck.getTopCard(), playerMove.card)) {
                 //case for successfully played card
                 resolveMove(playerMove);
-                return new GameReply(true);
+                if(currPlayer.getHandLength() == 0){
+                    gameRunning = false;
+                }
+                return true;
             }
         }
         //case for card not in hand or not valid move
-        return new GameReply(false);
+        return false;
     }
 
-    public GameReply playDrawCard(PlayerMove playerMove) {
+    public boolean playDrawCard(PlayerMove playerMove) {
         if (playerMove.card.equals(currPlayer.getLastDrewCard())) {
-            if (ServerGame.checkMove(deck.getTopCard(), playerMove.card)) {
+            if (Card.checkMove(deck.getTopCard(), playerMove.card)) {
                 resolveMove(playerMove);
-                return new GameReply(true);
+                return true;
             }
         }
-        return new GameReply(false);
+        return false;
+    }
+
+    public Card drawCard(){
+        return deck.drawCard();
     }
 
     private void resolveWild(Suit wildSuit) {
@@ -127,20 +130,16 @@ public class ServerGame {
         }
     }
 
-    private static boolean checkMove(Card topCard, Card newCard) {
-        //if wild card then move is always valid
-        //if the new cards suit or value matches the top cards then move is valid
-        //else move is false
-        if (newCard.getCardVal() == CardType.Wild || newCard.getCardVal() == CardType.WildDraw)
-            return true;
-        else if (newCard.getCardVal() == topCard.getCardVal() || newCard.getSuit() == topCard.getSuit())
-            return true;
-        else
-            return false;
-    }
-
     public GameState getGameState(Player p){
         return new GameState(players,p.getHand(),currPlayer,deck.getTopCard(),skip);
+    }
+
+    public boolean checkGameRunning(){
+        return gameRunning;
+    }
+
+    public Player getCurrPlayer(){
+        return currPlayer;
     }
 
 
