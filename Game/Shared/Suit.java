@@ -21,4 +21,12 @@ public enum Suit {
     public byte getByte(){
         return byteCode;
     }
+
+    public static Suit fromByte(byte byteCode){
+        for(Suit suit : values()){
+            if (suit.byteCode == byteCode)
+                return suit;
+        }
+        throw new IllegalArgumentException();
+    }
 }
