@@ -16,15 +16,15 @@ public class DeCode {
     public String ip;
     public byte[] cardData;
 
-    public DeCode(byte[] unParsedData, int usefulData){
+    public DeCode(byte[] unParsedData){
         ByteBuffer bb = ByteBuffer.wrap(unParsedData);
         opcode = bb.getInt();
         if(opcode == 1){
-            byte[] unparsedString = new byte[usefulData-4];
+            byte[] unparsedString = new byte[unParsedData.length-4];
             bb.get(unparsedString);
             ip = new String(unparsedString);
         }else if(opcode == 5 ||opcode == 6 ||opcode == 7 ||opcode == 11){
-            cardData = new byte[usefulData-4];
+            cardData = new byte[unParsedData.length-4];
             if(cardData.length>0){
                 bb.get(cardData);
             }
