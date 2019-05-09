@@ -7,6 +7,7 @@ package Game.Shared;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.nio.ByteBuffer;
 
 /**
@@ -20,27 +21,43 @@ public class EnCode {
     /*
     for codes: 0, 2, 3, 4, 8, 9, 10, 12
      */
-    public EnCode(int ackOpCode)throws IOException{
-        stream.write(intToBytes(ackOpCode));
+    public EnCode(int ackOpCode){
+        try {
+            stream.write(intToBytes(ackOpCode));
+        }
+        catch (IOException exp){
+            exp.printStackTrace();
+        }
     }
 
     /*
     for codes: 1
      */
 
-    public EnCode(String ip)throws IOException{
-        stream.write(intToBytes(1));
-        stream.write(ip.getBytes());
+    public EnCode(String ip){
+        try {
+            stream.write(intToBytes(1));
+            stream.write(ip.getBytes());
+        }
+        catch (IOException exp){
+            exp.printStackTrace();
+        }
     }
 
     /*
     for codes: 5, 6, 7, 11
      */
 
-    public EnCode(byte[] cardData, int opCode)throws IOException{
-        stream.write(intToBytes(opCode));
-        if(cardData!=null) {
-            stream.write(cardData);
+    public EnCode(Card card, int opCode){
+        try {
+            stream.write(intToBytes(opCode));
+            if (card != null) {
+                ObjectOutputStream out = new ObjectOutputStream(stream);
+                out.writeObject(card);
+            }
+        }
+        catch (IOException exp){
+            exp.printStackTrace();
         }
     }
 

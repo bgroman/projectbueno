@@ -1,15 +1,18 @@
-package Shared;
+package Game.Shared;
 
+import java.net.InetAddress;
 import java.util.ArrayList;
 
 public class Player {
     private ArrayList<Card> hand;
     private Card lastDrewCard;
     private String name;
+    private InetAddress inetAddress;
 
-    public Player(String name) {
+    public Player(String name, InetAddress inetAddress) {
         hand = new ArrayList<>();
         this.name = name;
+        this.inetAddress = inetAddress;
     }
 
     public boolean playCard(Card playCard) {
@@ -56,5 +59,9 @@ public class Player {
 
     public void updateHand(ArrayList<Card> hand){
         this.hand = hand;
+    }
+
+    public InetAddress getInetAddress(){
+        return inetAddress;
     }
 }
